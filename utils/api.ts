@@ -9,5 +9,5 @@ export default client
 export const DEFAULT_API_PARAMS = {
   KEY: process.env.API_KEY,
   type: "json",
-  pSize: 100,
+  pSize: 200,
 }

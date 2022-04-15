@@ -9,7 +9,7 @@ const server = createServer<{
   schema: {
     typeDefs: `
       type Query {
-        schools(name: String): [School]
+        schools(name: String, code: String, scCode: String): [School]
         timetable(code: String!, scCode: String!, type: String!, semester: Int, year: Int, grade: Int, classNo: Int, date: String): [Timetable]
       }
 
@@ -36,19 +36,17 @@ const server = createServer<{
     resolvers: {
       Query: {
         schools: async (_, args) => {
-          let data: any = {}
-          if ("name" in args)
-            data = (
-              await client.get("/schoolInfo", {
-                params: { ...DEFAULT_API_PARAMS, SCHUL_NM: args.name },
-              })
-            ).data
-          else
-            data = (
-              await client.get("/schoolInfo", {
-                params: { ...DEFAULT_API_PARAMS },
-              })
-            ).data
+          const optionalArgs: { [key: string]: any } = {}
+          ;[
+            ["name", "SCHUL_NM"],
+            ["code", "SD_SCHUL_CODE"],
+            ["scCode", "ATPT_OFCDC_SC_CODE"],
+          ].map(
+            ([arg, apiArg]) => arg in args && (optionalArgs[apiArg] = args[arg])
+          )
+          let { data } = await client.get("/schoolInfo", {
+            params: { ...DEFAULT_API_PARAMS, ...optionalArgs },
+          })
 
           if (!data.schoolInfo) throw Error("학교를 찾을 수 없습니다!")
           data = data.schoolInfo[1].row
