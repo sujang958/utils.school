@@ -6,7 +6,6 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        "nanum-pen": ["Nanum Pen Script", "cursive"],
         "noto-sans": ["Noto Sans KR", "sans-serif"],
       },
     },

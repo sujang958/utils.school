@@ -40,15 +40,13 @@ const Home: NextPage = () => {
 
   return (
     <div className="relative flex min-h-screen w-full flex-col text-white">
-      <div className="flex flex-col items-center justify-center bg-gray-900 py-32 md:py-48">
-        <p className="font-nanum-pen text-7xl">
-          {words[currentWordIndex]} 검색
-        </p>
+      <div className="flex flex-col items-center justify-center bg-gray-900 py-32 pb-20 md:pt-44 md:pb-32">
+        <p className="text-6xl md:text-7xl font-bold py-2">{words[currentWordIndex]} 검색</p>
         <div className="relative flex flex-col justify-center py-12">
           <input
             type="text"
             placeholder="학교 이름을 검색 해 보세요"
-            className="w-80 rounded-lg border border-slate-300 bg-gray-800 p-3 font-noto-sans text-xl outline-4 outline-offset-2 focus:outline-slate-600 md:w-96"
+            className="w-80 rounded-lg border border-slate-300 bg-gray-800 p-3 font-noto-sans text-xl outline-offset-4 focus:outline-slate-600 md:w-96"
             value={searchQuery}
             onChange={onSearchQueryChange}
             onKeyDown={({ key }) => key === "Enter" && searchSchool()}
@@ -74,7 +72,7 @@ const Home: NextPage = () => {
           </div>
         </div>
       </div>
-      <div className="sticky top-0 flex w-full flex-col items-center border-b border-b-slate-500 bg-gray-900">
+      <div className="sticky top-0 flex w-full flex-col items-center border-b border-b-slate-700 bg-gray-900">
         <div className="flex w-full max-w-7xl flex-row items-center justify-end space-x-2 p-4 md:space-x-4">
           <div className="flex shrink-0 cursor-pointer flex-row justify-between space-x-2 rounded-3xl py-2 px-4 transition duration-300 hover:bg-gray-800 hover:shadow-lg">
             <div className="select-none">
